@@ -1,13 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Task Manager System</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Создание задачи</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .task-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    .task-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .task-card label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .task-card input[type="text"],
+    .task-card textarea,
+    .task-card input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .task-card textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    .task-card button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .task-card button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-    <span class="create_task">
-        <input type="text">
-    </span>
+
+  <div class="task-card">
+    <h2>Создание задачи</h2>
+
+    <label for="task-name">Название задачи:</label>
+    <input type="text" id="task-name" name="task-name" placeholder="Введите название задачи" required>
+
+    <label for="task-description">Описание задачи:</label>
+    <textarea id="task-description" name="task-description" placeholder="Введите описание задачи" required></textarea>
+
+    <label for="task-deadline">Дата завершения:</label>
+    <input type="date" id="task-deadline" name="task-deadline" required>
+
+    <button onclick="createTask()">Создать задачу</button>
+  </div>
+
+  <script>
+    function createTask() {
+      const taskName = document.getElementById('task-name').value;
+      const taskDescription = document.getElementById('task-description').value;
+      const taskDeadline = document.getElementById('task-deadline').value;
+
+      if (!taskName || !taskDescription || !taskDeadline) {
+        alert('Пожалуйста, заполните все поля!');
+        return;
+      }
+
+      alert(`Задача создана!\n\nНазвание: ${taskName}\nОписание: ${taskDescription}\nДата завершения: ${taskDeadline}`);
+      
+      // Очистка полей после создания задачи
+      document.getElementById('task-name').value = '';
+      document.getElementById('task-description').value = '';
+      document.getElementById('task-deadline').value = '';
+    }
+  </script>
+
 </body>
 </html>
